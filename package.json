@@ -1,0 +1,33 @@
+{
+  "name": "redesert",
+  "version": "0.1.0",
+  "description":
+    "Higher order functions for creating opinionated redux reducers, selectors, actions, and action creators",
+  "main": "src/index.js",
+  "author": "Malcolm Ahoy <malcolmahoy@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "precommit": "precise-commits"
+  },
+  "dependencies": {
+    "lodash.isequal": "^4.5.0",
+    "lodash.set": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/lodash.isequal": "^4.5.2",
+    "@types/lodash.set": "^4.3.3",
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.1.1",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-plugin-flowtype": "^2.34.1",
+    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "husky": "^0.14.3",
+    "jest": "^22.4.3",
+    "precise-commits": "^1.0.2",
+    "prettier": "^1.12.1",
+    "typescript": "^2.8.3"
+  }
+}

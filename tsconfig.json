@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "esModuleInterop": true,
+    "lib": ["es2015", "es2016.array.include"],
+    "module": "commonjs",
+    "outDir": "./dist/",
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es5"
+  },
+  "include": ["./src/"],
+  "compileOnSave": true
+}
