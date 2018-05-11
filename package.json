@@ -8,6 +8,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
+    "test": "jest --watch",
+    "test:ci": "jest",
     "precommit": "precise-commits"
   },
   "dependencies": {
@@ -15,6 +17,7 @@
     "lodash.set": "^4.3.2"
   },
   "devDependencies": {
+    "@types/jest": "^22.2.3",
     "@types/lodash.isequal": "^4.5.2",
     "@types/lodash.set": "^4.3.3",
     "babel-eslint": "^7.2.3",
@@ -28,6 +31,15 @@
     "jest": "^22.4.3",
     "precise-commits": "^1.0.2",
     "prettier": "^1.12.1",
+    "ts-jest": "^22.4.5",
     "typescript": "^2.8.3"
+  },
+  "jest": {
+    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "transform": {
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "testRegex": "/src/.*\\.spec.(ts)$",
+    "collectCoverage": true
   }
 }
