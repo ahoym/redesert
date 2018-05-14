@@ -5,3 +5,5 @@ import { MakeReducerConfiguration } from './reducer-factories/type-definitions';
 export const makeResourceReducer = (
   config: MakeReducerConfiguration
 ): Function => resourceReducerFactory({ defaultReducerFactories, ...config });
+
+export { resourceReducerFactory };
