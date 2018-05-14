@@ -47,6 +47,10 @@
       "\\.(ts|tsx)$": "ts-jest"
     },
     "testRegex": "/src/.*\\.spec.(ts)$",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/src/reducer-factories/test-utils/"
+    ]
   }
 }
