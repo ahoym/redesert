@@ -13,7 +13,7 @@ export interface ReducerConfig {
 
 export interface DefaultReducerFactories {
   makeCreateLifeCycle: Function;
-  makeFetchLifeCycle: Function;
+  fetchReducerFactory: Function;
   makeDeleteLifeCycle: Function;
   makeUpdateLifeCycle: Function;
 }

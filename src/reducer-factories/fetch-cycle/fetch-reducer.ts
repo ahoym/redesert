@@ -12,7 +12,7 @@ import {
 
 const { START, FAILURE, SUCCESS } = API_LIFECYCLE_SUFFIXES;
 
-function makeFetchLifeCycle({ entitiesPath }: ReducerConfig): Function {
+function fetchReducerFactory({ entitiesPath }: ReducerConfig): Function {
   const fetchLifeCycleCases = (
     state: ReduxSliceState,
     action: Action
@@ -63,4 +63,4 @@ function makeFetchLifeCycle({ entitiesPath }: ReducerConfig): Function {
   return fetchLifeCycleCases;
 }
 
-export default makeFetchLifeCycle;
+export default fetchReducerFactory;

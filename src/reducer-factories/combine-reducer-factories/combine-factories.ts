@@ -19,7 +19,7 @@ function combineFactories({
   };
   const {
     makeCreateLifeCycle,
-    makeFetchLifeCycle,
+    fetchReducerFactory,
     makeDeleteLifeCycle,
     makeUpdateLifeCycle,
     ...customLifeCycles
@@ -33,7 +33,7 @@ function combineFactories({
     []
   );
   lifeCycleReducers.push(makeCreateLifeCycle(reducerConfig));
-  lifeCycleReducers.push(makeFetchLifeCycle(reducerConfig));
+  lifeCycleReducers.push(fetchReducerFactory(reducerConfig));
   lifeCycleReducers.push(makeDeleteLifeCycle(reducerConfig));
   lifeCycleReducers.push(makeUpdateLifeCycle(reducerConfig));
 

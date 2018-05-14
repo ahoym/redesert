@@ -6,7 +6,7 @@ describe('combineFactories()', () => {
   const entitiesPath = 'byId';
   const defaultReducerFactories = {
     makeCreateLifeCycle: mockReducerFactory,
-    makeFetchLifeCycle: mockReducerFactory,
+    fetchReducerFactory: mockReducerFactory,
     makeDeleteLifeCycle: mockReducerFactory,
     makeUpdateLifeCycle: mockReducerFactory,
   };
@@ -51,7 +51,7 @@ describe('combineFactories()', () => {
     combineFactories({
       ...defaultProps,
       customReducerFactories: {
-        makeFetchLifeCycle: overrideFn, // Override key life cycle from defaults
+        fetchReducerFactory: overrideFn, // Override key life cycle from defaults
       },
     });
 

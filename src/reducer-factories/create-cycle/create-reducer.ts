@@ -10,7 +10,7 @@ import {
   isValidActionType,
 } from '../../actions';
 
-function makeCreateReducer({ entitiesPath }: ReducerConfig): Function {
+function createReducerFactory({ entitiesPath }: ReducerConfig): Function {
   return (state: ReduxSliceState, action: Action): ReduxSliceState => {
     const { type, payload, errors } = action;
 
@@ -34,4 +34,4 @@ function makeCreateReducer({ entitiesPath }: ReducerConfig): Function {
   };
 }
 
-export default makeCreateReducer;
+export default createReducerFactory;

@@ -27,7 +27,7 @@ describe('resourceReducerFactory()', () => {
       const fooReducer = resourceReducerFactory({
         ...defaultProps,
         customReducerFactories: {
-          makeFetchLifeCycle: ({ entitiesPath }: any) => mockReducerFn,
+          fetchReducerFactory: ({ entitiesPath }: any) => mockReducerFn,
         },
       });
       const value = fooReducer(initialState, { type: `CUSTOM_${resource}` });
@@ -41,7 +41,7 @@ describe('resourceReducerFactory()', () => {
       const fooReducer = resourceReducerFactory({
         ...defaultProps,
         customReducerFactories: {
-          makeFetchLifeCycle: ({ entitiesPath }: any) => mockReducerFn,
+          fetchReducerFactory: ({ entitiesPath }: any) => mockReducerFn,
         },
       });
       const value = fooReducer(expectedState, { type: `CUSTOM_${resource}` });

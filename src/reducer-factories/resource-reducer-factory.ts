@@ -6,7 +6,7 @@ import { Action } from '../actions/type-definitions';
 const placeholderDefaultReducer = (state: ReduxSliceState) => state;
 const placeholderDefaultReducerFactories = {
   makeCreateLifeCycle: () => placeholderDefaultReducer,
-  makeFetchLifeCycle: () => placeholderDefaultReducer,
+  fetchReducerFactory: () => placeholderDefaultReducer,
   makeDeleteLifeCycle: () => placeholderDefaultReducer,
   makeUpdateLifeCycle: () => placeholderDefaultReducer,
 };
