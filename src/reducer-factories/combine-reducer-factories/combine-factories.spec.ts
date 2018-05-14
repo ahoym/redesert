@@ -5,10 +5,10 @@ describe('combineFactories()', () => {
   const mockReducerFactory = (config: any) => mockReducer;
   const entitiesPath = 'byId';
   const defaultReducerFactories = {
-    makeCreateLifeCycle: mockReducerFactory,
+    createReducerFactory: mockReducerFactory,
     fetchReducerFactory: mockReducerFactory,
-    makeDeleteLifeCycle: mockReducerFactory,
-    makeUpdateLifeCycle: mockReducerFactory,
+    removeReducerFactory: mockReducerFactory,
+    updateReducerFactory: mockReducerFactory,
   };
   const customReducerFactories = {};
   const defaultProps = {

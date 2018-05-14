@@ -12,10 +12,10 @@ export interface ReducerConfig {
 }
 
 export interface DefaultReducerFactories {
-  makeCreateLifeCycle: Function;
+  createReducerFactory: Function;
   fetchReducerFactory: Function;
-  makeDeleteLifeCycle: Function;
-  makeUpdateLifeCycle: Function;
+  removeReducerFactory: Function;
+  updateReducerFactory: Function;
 }
 
 export interface CombinedReducerConfiguration {
@@ -26,7 +26,7 @@ export interface CombinedReducerConfiguration {
 
 export interface MakeReducerConfiguration {
   customReducerFactories?: ReducerFactory;
-  defaultReducerFactories?: DefaultReducerFactories;
+  defaultReducerFactories: DefaultReducerFactories;
   entitiesPath: string;
   externalActionTypes?: string[];
   initialState?: any;
