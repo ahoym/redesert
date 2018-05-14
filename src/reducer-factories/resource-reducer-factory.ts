@@ -18,14 +18,17 @@ function resourceReducerFactory({
   externalActionTypes = [],
   initialState,
   resource,
-}: MakeReducerConfiguration) {
+}: MakeReducerConfiguration): Function {
   const allReducers = combineFactories({
     entitiesPath,
     customReducerFactories,
     defaultReducerFactories,
   });
 
-  return (state: ReduxSliceState = initialState, action: Action) => {
+  return (
+    state: ReduxSliceState = initialState,
+    action: Action
+  ): ReduxSliceState => {
     const actionType: string = action.type;
     const isValidActionType: boolean =
       actionType.includes(resource) || externalActionTypes.includes(actionType);

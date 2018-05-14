@@ -12,8 +12,11 @@ import {
 
 const { START, ERROR, SUCCESS } = API_LIFECYCLE_SUFFIXES;
 
-function makeFetchLifeCycle({ entitiesPath }: ReducerConfig) {
-  const fetchLifeCycleCases = (state: ReduxSliceState, action: Action) => {
+function makeFetchLifeCycle({ entitiesPath }: ReducerConfig): Function {
+  const fetchLifeCycleCases = (
+    state: ReduxSliceState,
+    action: Action
+  ): ReduxSliceState => {
     const { errors, meta, payload, type } = action;
 
     if (!isValidActionType(API_ACTION_PREFIXES.FETCH, type)) return state;
