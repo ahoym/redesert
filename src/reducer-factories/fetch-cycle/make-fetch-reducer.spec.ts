@@ -38,7 +38,8 @@ describe('makeFetchLifeCycle()', () => {
   assertErrorsSet(
     (testEntitiesPath: string) =>
       makeFetchLifeCycle({ ...defaultProps, entitiesPath: testEntitiesPath }),
-    FETCH_RESOURCE_ERROR
+    FETCH_RESOURCE_ERROR,
+    'isFetching'
   );
 
   describe('outcomes with the *_SUCCESS action.type', () => {

@@ -67,7 +67,11 @@ export const assertPendingStateSet = (
   });
 };
 
-export const assertErrorsSet = (output: Function, actionType: string) => {
+export const assertErrorsSet = (
+  output: Function,
+  actionType: string,
+  pendingState: string
+) => {
   it(`sets errors on the *_ERROR action.type`, () => {
     const reducer = output(testEntitiesPath);
     const initialState = reducer(mockState(), { type: '@@INIT' });
@@ -81,7 +85,7 @@ export const assertErrorsSet = (output: Function, actionType: string) => {
     const nextState = reducer(mockState(), failureAction);
     const testEntity = nextState[testEntitiesPath][referenceId];
 
-    expect(testEntity.isFetching).toEqual(false);
+    expect(testEntity[pendingState]).toEqual(false);
     expect(testEntity).toHaveProperty('errors');
   });
 };
