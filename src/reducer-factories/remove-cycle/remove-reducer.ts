@@ -12,7 +12,7 @@ import {
 
 function removeReducerFactory({ entitiesPath }: ReducerConfig): Function {
   return (state: ReduxSliceState, action: Action): ReduxSliceState => {
-    const { type, payload, errors, meta } = action;
+    const { type, errors, meta } = action;
 
     if (!isValidActionType(API_ACTION_PREFIXES.REMOVE, type)) return state;
     const newState = cloneDeep(state);
