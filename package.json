@@ -4,6 +4,7 @@
   "description":
     "Higher order functions for creating opinionated redux reducers, selectors, actions, and action creators",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Malcolm Ahoy <malcolmahoy@gmail.com>",
   "license": "MIT",
   "scripts": {
