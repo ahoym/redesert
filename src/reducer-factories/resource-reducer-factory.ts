@@ -1,10 +1,6 @@
 import isEqual from 'lodash.isequal';
 import combineFactories from './combine-reducer-factories/combine-factories';
-import {
-  ReducerFactory,
-  ReduxSliceState,
-  MakeReducerConfiguration,
-} from './type-definitions';
+import { ReduxSliceState, MakeReducerConfiguration } from './type-definitions';
 import { Action } from '../actions/type-definitions';
 
 const placeholderDefaultReducer = (state: ReduxSliceState) => state;
