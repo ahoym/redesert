@@ -1,10 +1,6 @@
 import isEqual from 'lodash.isequal';
 import combineFactories from './combine-reducer-factories/combine-factories';
-import {
-  ReducerFactory,
-  ReduxSliceState,
-  MakeReducerConfiguration,
-} from './type-definitions';
+import { ReduxSliceState, MakeReducerConfiguration } from './type-definitions';
 import { Action } from '../actions/type-definitions';
 
 const placeholderDefaultReducer = (state: ReduxSliceState) => state;
@@ -22,14 +18,17 @@ function resourceReducerFactory({
   externalActionTypes = [],
   initialState,
   resource,
-}: MakeReducerConfiguration) {
+}: MakeReducerConfiguration): Function {
   const allReducers = combineFactories({
     entitiesPath,
     customReducerFactories,
     defaultReducerFactories,
   });
 
-  return (state: ReduxSliceState = initialState, action: Action) => {
+  return (
+    state: ReduxSliceState = initialState,
+    action: Action
+  ): ReduxSliceState => {
     const actionType: string = action.type;
     const isValidActionType: boolean =
       actionType.includes(resource) || externalActionTypes.includes(actionType);

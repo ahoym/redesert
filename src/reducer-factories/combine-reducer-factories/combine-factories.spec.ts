@@ -38,7 +38,7 @@ describe('combineFactories()', () => {
 
   it('calls the reducer factories with a reducerConfig', () => {
     const reducerFactoryMock = jest.fn();
-    const reducers = combineFactories({
+    combineFactories({
       ...defaultProps,
       customReducerFactories: { foo: reducerFactoryMock },
     });
@@ -48,7 +48,7 @@ describe('combineFactories()', () => {
 
   it('combines customReducerFactories on top of defaultReducerFactories', () => {
     const overrideFn = jest.fn();
-    const reducers = combineFactories({
+    combineFactories({
       ...defaultProps,
       customReducerFactories: {
         makeFetchLifeCycle: overrideFn, // Override key life cycle from defaults

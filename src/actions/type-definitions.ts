@@ -4,9 +4,7 @@ export type Meta = {
 
 export type Action = {
   readonly type: string;
-  readonly payload?: {
-    [id: string]: string | number;
-  };
+  readonly payload?: any;
   readonly errors?: object;
   meta?: Meta;
 };

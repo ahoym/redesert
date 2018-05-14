@@ -10,4 +10,8 @@ const API_LIFECYCLE_SUFFIXES: ApiLifeCycleSuffixes = {
   ERROR: '_ERROR',
 };
 
+export const ALL_API_LIFECYCLE_SUFFIXES: string[] = Object.keys(
+  API_LIFECYCLE_SUFFIXES
+);
+
 export default API_LIFECYCLE_SUFFIXES;
