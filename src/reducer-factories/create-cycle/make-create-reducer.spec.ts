@@ -9,15 +9,17 @@ import { API_ACTION_PREFIXES, API_LIFECYCLE_SUFFIXES } from '../../actions';
 
 const { CREATE } = API_ACTION_PREFIXES;
 const { ERROR, SUCCESS } = API_LIFECYCLE_SUFFIXES;
-const FETCH_RESOURCE_ERROR = `${CREATE}_*_${ERROR}`;
-const FETCH_RESOURCE_SUCCESS = `${CREATE}_*_${SUCCESS}`;
+const CREATE_RESOURCE_ERROR = `${CREATE}_*_${ERROR}`;
+const CREATE_RESOURCE_SUCCESS = `${CREATE}_*_${SUCCESS}`;
 
 describe('makeCreateReducer()', () => {
   const entitiesPath = 'byId';
   const defaultProps = { entitiesPath };
 
   assertOutputIsFunction(() => makeCreateReducer(defaultProps));
+
   assertInitialStateReturnedOnInit(() => makeCreateReducer(defaultProps));
+
   assertStateReturnedOnInvalidActionType(
     () => makeCreateReducer(defaultProps),
     CREATE
@@ -30,7 +32,7 @@ describe('makeCreateReducer()', () => {
     expect(initialState).toEqual(mockState);
 
     const failureAction = {
-      type: FETCH_RESOURCE_ERROR,
+      type: CREATE_RESOURCE_ERROR,
       errors: ['something went wrong!'],
     };
     const nextState = reducer(mockState, failureAction);
@@ -48,7 +50,7 @@ describe('makeCreateReducer()', () => {
         },
       };
       const successAction = {
-        type: FETCH_RESOURCE_SUCCESS,
+        type: CREATE_RESOURCE_SUCCESS,
         payload: {
           id: '456',
           name: 'bar',
