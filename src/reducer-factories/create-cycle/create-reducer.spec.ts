@@ -1,4 +1,4 @@
-import makeCreateReducer from './make-create-reducer';
+import createReducerFactory from './create-reducer';
 
 import {
   assertOutputIsFunction,
@@ -8,31 +8,31 @@ import {
 import { API_ACTION_PREFIXES, API_LIFECYCLE_SUFFIXES } from '../../actions';
 
 const { CREATE } = API_ACTION_PREFIXES;
-const { ERROR, SUCCESS } = API_LIFECYCLE_SUFFIXES;
-const CREATE_RESOURCE_ERROR = `${CREATE}_*_${ERROR}`;
+const { FAILURE, SUCCESS } = API_LIFECYCLE_SUFFIXES;
+const CREATE_RESOURCE_FAILURE = `${CREATE}_*_${FAILURE}`;
 const CREATE_RESOURCE_SUCCESS = `${CREATE}_*_${SUCCESS}`;
 
-describe('makeCreateReducer()', () => {
+describe('createReducerFactory()', () => {
   const entitiesPath = 'byId';
   const defaultProps = { entitiesPath };
 
-  assertOutputIsFunction(() => makeCreateReducer(defaultProps));
+  assertOutputIsFunction(() => createReducerFactory(defaultProps));
 
-  assertInitialStateReturnedOnInit(() => makeCreateReducer(defaultProps));
+  assertInitialStateReturnedOnInit(() => createReducerFactory(defaultProps));
 
   assertStateReturnedOnInvalidActionType(
-    () => makeCreateReducer(defaultProps),
+    () => createReducerFactory(defaultProps),
     CREATE
   );
 
-  it(`sets errors at the state slice root on the *_ERROR action.type`, () => {
-    const reducer = makeCreateReducer(defaultProps);
+  it(`sets errors at the state slice root on the *_FAILURE action.type`, () => {
+    const reducer = createReducerFactory(defaultProps);
     const mockState = {};
     const initialState = reducer(mockState, { type: '@@INIT' });
     expect(initialState).toEqual(mockState);
 
     const failureAction = {
-      type: CREATE_RESOURCE_ERROR,
+      type: CREATE_RESOURCE_FAILURE,
       errors: ['something went wrong!'],
     };
     const nextState = reducer(mockState, failureAction);
@@ -42,7 +42,7 @@ describe('makeCreateReducer()', () => {
 
   describe('outcomes with the *_SUCCESS action.type', () => {
     it('unsets the root errors and sets the payload to the payload.id', () => {
-      const reducer = makeCreateReducer(defaultProps);
+      const reducer = createReducerFactory(defaultProps);
       const initialState = {
         errors: ['Some error while creating'],
         [entitiesPath]: {

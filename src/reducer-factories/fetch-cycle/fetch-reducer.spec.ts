@@ -1,4 +1,4 @@
-import makeFetchLifeCycle from './make-fetch-reducer';
+import fetchReducerFactory from './fetch-reducer';
 import { API_ACTION_PREFIXES, API_LIFECYCLE_SUFFIXES } from '../../actions';
 import {
   assertOutputIsFunction,
@@ -9,36 +9,36 @@ import {
 } from '../test-utils/common-specs';
 
 const { FETCH } = API_ACTION_PREFIXES;
-const { START, SUCCESS, ERROR } = API_LIFECYCLE_SUFFIXES;
+const { START, SUCCESS, FAILURE } = API_LIFECYCLE_SUFFIXES;
 
 const FETCH_RESOURCE_START = `${FETCH}_*_${START}`;
-const FETCH_RESOURCE_ERROR = `${FETCH}_*_${ERROR}`;
+const FETCH_RESOURCE_FAILURE = `${FETCH}_*_${FAILURE}`;
 const FETCH_RESOURCE_SUCCESS = `${FETCH}_*_${SUCCESS}`;
 
-describe('makeFetchLifeCycle()', () => {
+describe('fetchReducerFactory()', () => {
   const entitiesPath = 'byId';
   const defaultProps = { entitiesPath };
 
-  assertOutputIsFunction(() => makeFetchLifeCycle(defaultProps));
+  assertOutputIsFunction(() => fetchReducerFactory(defaultProps));
 
-  assertInitialStateReturnedOnInit(() => makeFetchLifeCycle(defaultProps));
+  assertInitialStateReturnedOnInit(() => fetchReducerFactory(defaultProps));
 
   assertStateReturnedOnInvalidActionType(
-    () => makeFetchLifeCycle(defaultProps),
+    () => fetchReducerFactory(defaultProps),
     FETCH
   );
 
   assertPendingStateSet(
     (testEntitiesPath: string) =>
-      makeFetchLifeCycle({ ...defaultProps, entitiesPath: testEntitiesPath }),
+      fetchReducerFactory({ ...defaultProps, entitiesPath: testEntitiesPath }),
     FETCH_RESOURCE_START,
     'isFetching'
   );
 
   assertErrorsSet(
     (testEntitiesPath: string) =>
-      makeFetchLifeCycle({ ...defaultProps, entitiesPath: testEntitiesPath }),
-    FETCH_RESOURCE_ERROR,
+      fetchReducerFactory({ ...defaultProps, entitiesPath: testEntitiesPath }),
+    FETCH_RESOURCE_FAILURE,
     'isFetching'
   );
 
@@ -54,7 +54,7 @@ describe('makeFetchLifeCycle()', () => {
     };
 
     it('sets the action.payload on a specific entity determined by the meta.referenceId', () => {
-      const fetchReducer = makeFetchLifeCycle(defaultProps);
+      const fetchReducer = fetchReducerFactory(defaultProps);
       const initialState = {
         [entitiesPath]: {},
       };
@@ -70,7 +70,7 @@ describe('makeFetchLifeCycle()', () => {
     });
 
     it('sets the action.payload on a specific entity determined by the payload.id', () => {
-      const fetchReducer = makeFetchLifeCycle(defaultProps);
+      const fetchReducer = fetchReducerFactory(defaultProps);
       const initialState = {
         [entitiesPath]: {},
       };
@@ -82,7 +82,7 @@ describe('makeFetchLifeCycle()', () => {
     });
 
     it('unsets errors and isFetching', () => {
-      const fetchReducer = makeFetchLifeCycle(defaultProps);
+      const fetchReducer = fetchReducerFactory(defaultProps);
       const initialState = {
         [entitiesPath]: {
           [referenceId]: {
@@ -100,16 +100,16 @@ describe('makeFetchLifeCycle()', () => {
 
   describe('batch responses', () => {
     it('sets the isFetching pending state at the root state level', () => {
-      const fooReducer = makeFetchLifeCycle(defaultProps);
+      const fooReducer = fetchReducerFactory(defaultProps);
       const nextState = fooReducer({}, { type: FETCH_RESOURCE_START });
       expect(nextState.isFetching).toEqual(true);
     });
 
     it('sets errors at the root level', () => {
       const expectedErrors = ['something went wrong'];
-      const fooReducer = makeFetchLifeCycle(defaultProps);
+      const fooReducer = fetchReducerFactory(defaultProps);
       const errorAction = {
-        type: FETCH_RESOURCE_ERROR,
+        type: FETCH_RESOURCE_FAILURE,
         errors: expectedErrors,
       };
       const nextState = fooReducer({}, errorAction);
@@ -119,7 +119,7 @@ describe('makeFetchLifeCycle()', () => {
     });
 
     it('sets the action.payload at the entitiesPath', () => {
-      const fooReducer = makeFetchLifeCycle(defaultProps);
+      const fooReducer = fetchReducerFactory(defaultProps);
       const successAction = {
         type: FETCH_RESOURCE_SUCCESS,
         payload: {

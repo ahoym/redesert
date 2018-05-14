@@ -5,10 +5,10 @@ describe('combineFactories()', () => {
   const mockReducerFactory = (config: any) => mockReducer;
   const entitiesPath = 'byId';
   const defaultReducerFactories = {
-    makeCreateLifeCycle: mockReducerFactory,
-    makeFetchLifeCycle: mockReducerFactory,
-    makeDeleteLifeCycle: mockReducerFactory,
-    makeUpdateLifeCycle: mockReducerFactory,
+    createReducerFactory: mockReducerFactory,
+    fetchReducerFactory: mockReducerFactory,
+    removeReducerFactory: mockReducerFactory,
+    updateReducerFactory: mockReducerFactory,
   };
   const customReducerFactories = {};
   const defaultProps = {
@@ -51,7 +51,7 @@ describe('combineFactories()', () => {
     combineFactories({
       ...defaultProps,
       customReducerFactories: {
-        makeFetchLifeCycle: overrideFn, // Override key life cycle from defaults
+        fetchReducerFactory: overrideFn, // Override key life cycle from defaults
       },
     });
 

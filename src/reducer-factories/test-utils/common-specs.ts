@@ -72,7 +72,7 @@ export const assertErrorsSet = (
   actionType: string,
   pendingState: string
 ) => {
-  it(`sets errors on the *_ERROR action.type`, () => {
+  it(`sets errors on the *_FAILURE action.type`, () => {
     const reducer = output(testEntitiesPath);
     const initialState = reducer(mockState(), { type: '@@INIT' });
     expect(initialState).toEqual(mockState());

@@ -1,13 +1,13 @@
 export interface ApiLifeCycleSuffixes {
   readonly START: '_START';
   readonly SUCCESS: '_SUCCESS';
-  readonly ERROR: '_ERROR';
+  readonly FAILURE: '_FAILURE';
 }
 
 const API_LIFECYCLE_SUFFIXES: ApiLifeCycleSuffixes = {
   START: '_START',
   SUCCESS: '_SUCCESS',
-  ERROR: '_ERROR',
+  FAILURE: '_FAILURE',
 };
 
 export const ALL_API_LIFECYCLE_SUFFIXES: string[] = Object.keys(

@@ -8,10 +8,10 @@ import {
   assertErrorsSet,
 } from './../test-utils/common-specs';
 
-const { START, ERROR, SUCCESS } = API_LIFECYCLE_SUFFIXES;
+const { START, FAILURE, SUCCESS } = API_LIFECYCLE_SUFFIXES;
 const { REMOVE } = API_ACTION_PREFIXES;
 const REMOVE_RESOURCE_START = `${REMOVE}_*_${START}`;
-const REMOVE_RESOURCE_ERROR = `${REMOVE}_*_${ERROR}`;
+const REMOVE_RESOURCE_FAILURE = `${REMOVE}_*_${FAILURE}`;
 const REMOVE_RESOURCE_SUCCESS = `${REMOVE}_*_${SUCCESS}`;
 
 describe('removeReducerFactory()', () => {
@@ -35,7 +35,7 @@ describe('removeReducerFactory()', () => {
 
   assertErrorsSet(
     () => removeReducerFactory(defaultProps),
-    REMOVE_RESOURCE_ERROR,
+    REMOVE_RESOURCE_FAILURE,
     'isRemoving'
   );
 

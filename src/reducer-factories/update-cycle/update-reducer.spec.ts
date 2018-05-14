@@ -8,10 +8,10 @@ import {
 import updateReducerFactory from './update-reducer';
 import { API_LIFECYCLE_SUFFIXES, API_ACTION_PREFIXES } from '../../actions';
 
-const { START, ERROR, SUCCESS } = API_LIFECYCLE_SUFFIXES;
+const { START, FAILURE, SUCCESS } = API_LIFECYCLE_SUFFIXES;
 const { UPDATE } = API_ACTION_PREFIXES;
 const UPDATE_RESOURCE_START = `${UPDATE}_*_${START}`;
-const UPDATE_RESOURCE_ERROR = `${UPDATE}_*_${ERROR}`;
+const UPDATE_RESOURCE_FAILURE = `${UPDATE}_*_${FAILURE}`;
 const UPDATE_RESOURCE_SUCCESS = `${UPDATE}_*_${SUCCESS}`;
 
 describe('updateReducerFactory()', () => {
@@ -35,7 +35,7 @@ describe('updateReducerFactory()', () => {
 
   assertErrorsSet(
     () => updateReducerFactory(defaultProps),
-    UPDATE_RESOURCE_ERROR,
+    UPDATE_RESOURCE_FAILURE,
     'isUpdating'
   );
 

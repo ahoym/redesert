@@ -5,11 +5,24 @@ import {
   assertInitialStateReturnedOnInit,
 } from './test-utils/common-specs';
 
+const placeholderDefaultReducer = (state: any) => state;
+const defaultReducerFactories = {
+  createReducerFactory: () => placeholderDefaultReducer,
+  fetchReducerFactory: () => placeholderDefaultReducer,
+  removeReducerFactory: () => placeholderDefaultReducer,
+  updateReducerFactory: () => placeholderDefaultReducer,
+};
+
 describe('resourceReducerFactory()', () => {
   const entitiesPath = 'byId';
   const resource = 'foo';
   const initialState = { foo: 'foo' };
-  const defaultProps = { entitiesPath, initialState, resource };
+  const defaultProps = {
+    entitiesPath,
+    initialState,
+    resource,
+    defaultReducerFactories,
+  };
 
   assertOutputIsFunction(() => resourceReducerFactory(defaultProps));
   assertInitialStateReturnedOnInit(() => resourceReducerFactory(defaultProps));
@@ -27,7 +40,7 @@ describe('resourceReducerFactory()', () => {
       const fooReducer = resourceReducerFactory({
         ...defaultProps,
         customReducerFactories: {
-          makeFetchLifeCycle: ({ entitiesPath }: any) => mockReducerFn,
+          fetchReducerFactory: ({ entitiesPath }: any) => mockReducerFn,
         },
       });
       const value = fooReducer(initialState, { type: `CUSTOM_${resource}` });
@@ -41,7 +54,7 @@ describe('resourceReducerFactory()', () => {
       const fooReducer = resourceReducerFactory({
         ...defaultProps,
         customReducerFactories: {
-          makeFetchLifeCycle: ({ entitiesPath }: any) => mockReducerFn,
+          fetchReducerFactory: ({ entitiesPath }: any) => mockReducerFn,
         },
       });
       const value = fooReducer(expectedState, { type: `CUSTOM_${resource}` });

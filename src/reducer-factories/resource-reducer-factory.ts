@@ -3,17 +3,9 @@ import combineFactories from './combine-reducer-factories/combine-factories';
 import { ReduxSliceState, MakeReducerConfiguration } from './type-definitions';
 import { Action } from '../actions/type-definitions';
 
-const placeholderDefaultReducer = (state: ReduxSliceState) => state;
-const placeholderDefaultReducerFactories = {
-  makeCreateLifeCycle: () => placeholderDefaultReducer,
-  makeFetchLifeCycle: () => placeholderDefaultReducer,
-  makeDeleteLifeCycle: () => placeholderDefaultReducer,
-  makeUpdateLifeCycle: () => placeholderDefaultReducer,
-};
-
 function resourceReducerFactory({
   customReducerFactories,
-  defaultReducerFactories = placeholderDefaultReducerFactories,
+  defaultReducerFactories,
   entitiesPath,
   externalActionTypes = [],
   initialState,

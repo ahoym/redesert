@@ -18,26 +18,26 @@ function combineFactories({
     entitiesPath,
   };
   const {
-    makeCreateLifeCycle,
-    makeFetchLifeCycle,
-    makeDeleteLifeCycle,
-    makeUpdateLifeCycle,
-    ...customLifeCycles
+    createReducerFactory,
+    fetchReducerFactory,
+    removeReducerFactory,
+    updateReducerFactory,
+    ...customFactories
   } = allFactories;
 
-  const lifeCycleReducers: Function[] = Object.keys(customLifeCycles).reduce(
-    (cycles: Function[], reducerName: string) => {
-      const reducerFactory = customLifeCycles[reducerName];
-      return [...cycles, reducerFactory(reducerConfig)];
+  const allReducers: Function[] = Object.keys(customFactories).reduce(
+    (reducers: Function[], reducerName: string) => {
+      const reducerFactory = customFactories[reducerName];
+      return [...reducers, reducerFactory(reducerConfig)];
     },
     []
   );
-  lifeCycleReducers.push(makeCreateLifeCycle(reducerConfig));
-  lifeCycleReducers.push(makeFetchLifeCycle(reducerConfig));
-  lifeCycleReducers.push(makeDeleteLifeCycle(reducerConfig));
-  lifeCycleReducers.push(makeUpdateLifeCycle(reducerConfig));
+  allReducers.push(createReducerFactory(reducerConfig));
+  allReducers.push(fetchReducerFactory(reducerConfig));
+  allReducers.push(removeReducerFactory(reducerConfig));
+  allReducers.push(updateReducerFactory(reducerConfig));
 
-  return lifeCycleReducers;
+  return allReducers;
 }
 
 export default combineFactories;

@@ -36,7 +36,7 @@ function updateReducerFactory({ entitiesPath }: ReducerConfig): Function {
       return set(nextState, [...attributesPath, 'isUpdating'], true);
     }
 
-    if (type.endsWith(API_LIFECYCLE_SUFFIXES.ERROR)) {
+    if (type.endsWith(API_LIFECYCLE_SUFFIXES.FAILURE)) {
       set(nextState, [...attributesPath, 'isUpdating'], false);
       return set(nextState, [...attributesPath, 'errors'], errors);
     }
