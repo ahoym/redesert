@@ -8,8 +8,8 @@ import {
 import { API_ACTION_PREFIXES, API_LIFECYCLE_SUFFIXES } from '../../actions';
 
 const { CREATE } = API_ACTION_PREFIXES;
-const { ERROR, SUCCESS } = API_LIFECYCLE_SUFFIXES;
-const CREATE_RESOURCE_ERROR = `${CREATE}_*_${ERROR}`;
+const { FAILURE, SUCCESS } = API_LIFECYCLE_SUFFIXES;
+const CREATE_RESOURCE_FAILURE = `${CREATE}_*_${FAILURE}`;
 const CREATE_RESOURCE_SUCCESS = `${CREATE}_*_${SUCCESS}`;
 
 describe('makeCreateReducer()', () => {
@@ -25,14 +25,14 @@ describe('makeCreateReducer()', () => {
     CREATE
   );
 
-  it(`sets errors at the state slice root on the *_ERROR action.type`, () => {
+  it(`sets errors at the state slice root on the *_FAILURE action.type`, () => {
     const reducer = makeCreateReducer(defaultProps);
     const mockState = {};
     const initialState = reducer(mockState, { type: '@@INIT' });
     expect(initialState).toEqual(mockState);
 
     const failureAction = {
-      type: CREATE_RESOURCE_ERROR,
+      type: CREATE_RESOURCE_FAILURE,
       errors: ['something went wrong!'],
     };
     const nextState = reducer(mockState, failureAction);

@@ -10,7 +10,7 @@ import {
   isValidActionType,
 } from '../../actions';
 
-const { START, ERROR, SUCCESS } = API_LIFECYCLE_SUFFIXES;
+const { START, FAILURE, SUCCESS } = API_LIFECYCLE_SUFFIXES;
 
 function makeFetchLifeCycle({ entitiesPath }: ReducerConfig): Function {
   const fetchLifeCycleCases = (
@@ -37,7 +37,7 @@ function makeFetchLifeCycle({ entitiesPath }: ReducerConfig): Function {
       return set(newState, [...attributePath, 'isFetching'], true);
     }
 
-    if (type.endsWith(ERROR)) {
+    if (type.endsWith(FAILURE)) {
       set(newState, [...attributePath, 'errors'], errors);
       return set(newState, [...attributePath, 'isFetching'], false);
     }

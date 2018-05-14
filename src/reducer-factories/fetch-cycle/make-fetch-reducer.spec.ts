@@ -9,10 +9,10 @@ import {
 } from '../test-utils/common-specs';
 
 const { FETCH } = API_ACTION_PREFIXES;
-const { START, SUCCESS, ERROR } = API_LIFECYCLE_SUFFIXES;
+const { START, SUCCESS, FAILURE } = API_LIFECYCLE_SUFFIXES;
 
 const FETCH_RESOURCE_START = `${FETCH}_*_${START}`;
-const FETCH_RESOURCE_ERROR = `${FETCH}_*_${ERROR}`;
+const FETCH_RESOURCE_FAILURE = `${FETCH}_*_${FAILURE}`;
 const FETCH_RESOURCE_SUCCESS = `${FETCH}_*_${SUCCESS}`;
 
 describe('makeFetchLifeCycle()', () => {
@@ -38,7 +38,7 @@ describe('makeFetchLifeCycle()', () => {
   assertErrorsSet(
     (testEntitiesPath: string) =>
       makeFetchLifeCycle({ ...defaultProps, entitiesPath: testEntitiesPath }),
-    FETCH_RESOURCE_ERROR,
+    FETCH_RESOURCE_FAILURE,
     'isFetching'
   );
 
@@ -109,7 +109,7 @@ describe('makeFetchLifeCycle()', () => {
       const expectedErrors = ['something went wrong'];
       const fooReducer = makeFetchLifeCycle(defaultProps);
       const errorAction = {
-        type: FETCH_RESOURCE_ERROR,
+        type: FETCH_RESOURCE_FAILURE,
         errors: expectedErrors,
       };
       const nextState = fooReducer({}, errorAction);

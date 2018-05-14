@@ -34,7 +34,7 @@ function removeReducerFactory({ entitiesPath }: ReducerConfig): Function {
       return set(newState, [...attributesPath, 'isRemoving'], true);
     }
 
-    if (type.endsWith(API_LIFECYCLE_SUFFIXES.ERROR)) {
+    if (type.endsWith(API_LIFECYCLE_SUFFIXES.FAILURE)) {
       set(newState, [...attributesPath, 'isRemoving'], false);
       return set(newState, [...attributesPath, 'errors'], errors);
     }

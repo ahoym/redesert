@@ -18,7 +18,7 @@ function makeCreateReducer({ entitiesPath }: ReducerConfig): Function {
 
     const nextState = cloneDeep(state);
 
-    if (type.endsWith(API_LIFECYCLE_SUFFIXES.ERROR)) {
+    if (type.endsWith(API_LIFECYCLE_SUFFIXES.FAILURE)) {
       return set(nextState, 'errors', errors);
     }
 
