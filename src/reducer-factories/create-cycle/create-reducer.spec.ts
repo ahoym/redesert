@@ -1,4 +1,4 @@
-import makeCreateReducer from './make-create-reducer';
+import makeCreateReducer from './create-reducer';
 
 import {
   assertOutputIsFunction,

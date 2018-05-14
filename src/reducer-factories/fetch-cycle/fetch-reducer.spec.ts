@@ -1,4 +1,4 @@
-import makeFetchLifeCycle from './make-fetch-reducer';
+import makeFetchLifeCycle from './fetch-reducer';
 import { API_ACTION_PREFIXES, API_LIFECYCLE_SUFFIXES } from '../../actions';
 import {
   assertOutputIsFunction,
