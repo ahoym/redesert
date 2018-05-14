@@ -1,11 +1,9 @@
 import resourceReducerFactory from './resource-reducer-factory';
 import { Action } from '../actions/type-definitions';
-
-const assertOutputIsFunction = (output: Function) => {
-  it('returns a function', () => {
-    expect(output()).toBeInstanceOf(Function);
-  });
-};
+import {
+  assertOutputIsFunction,
+  assertInitialStateReturnedOnInit,
+} from './test-utils/common-specs';
 
 describe('resourceReducerFactory()', () => {
   const entitiesPath = 'byId';
@@ -14,12 +12,7 @@ describe('resourceReducerFactory()', () => {
   const defaultProps = { entitiesPath, initialState, resource };
 
   assertOutputIsFunction(() => resourceReducerFactory(defaultProps));
-
-  it('returns the initialState on the @@INIT action type', () => {
-    const fooReducer = resourceReducerFactory(defaultProps);
-    const value = fooReducer(initialState, { type: '@@INIT' });
-    expect(value).toEqual(initialState);
-  });
+  assertInitialStateReturnedOnInit(() => resourceReducerFactory(defaultProps));
 
   describe('action.type relations to the resource', () => {
     it('returns state when the action.type is unrelated', () => {
