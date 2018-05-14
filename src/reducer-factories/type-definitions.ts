@@ -8,7 +8,7 @@ export interface ReduxSliceState {
 }
 
 export interface ReducerConfig {
-  entitiesPath?: string;
+  entitiesPath: string;
 }
 
 export interface DefaultReducerFactories {
