@@ -4,7 +4,6 @@ import {
   assertOutputIsFunction,
   assertInitialStateReturnedOnInit,
   assertStateReturnedOnInvalidActionType,
-  assertErrorsSet,
 } from './../test-utils/common-specs';
 import { API_ACTION_PREFIXES, API_LIFECYCLE_SUFFIXES } from '../../actions';
 
