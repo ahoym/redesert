@@ -1,3 +1,4 @@
+import apiThunk from './api-thunk-factory/api-thunk';
 import defaultReducerFactories from './reducer-factories/default-factories';
 import resourceReducerFactory from './reducer-factories/resource-reducer-factory';
 import selectorsFactory from './selector-factories/base-selectors';
@@ -12,9 +13,7 @@ type MakeResourceReducerConfig = {
   resource: string;
 };
 
-export const makeResourceReducer = (
-  config: MakeResourceReducerConfig
-): Function =>
+const makeResourceReducer = (config: MakeResourceReducerConfig): Function =>
   resourceReducerFactory({
     defaultReducerFactories,
     entitiesPath,
@@ -25,7 +24,14 @@ type MakeResourceSelectorsConfig = {
   entitiesPath: string;
   resource: string;
 };
-export const makeResourceSelectors = (config: MakeResourceSelectorsConfig) =>
+
+const makeResourceSelectors = (config: MakeResourceSelectorsConfig) =>
   selectorsFactory({ entitiesPath, ...config });
 
-export { resourceReducerFactory, selectorsFactory };
+export {
+  apiThunk,
+  makeResourceReducer,
+  makeResourceSelectors,
+  resourceReducerFactory,
+  selectorsFactory,
+};
