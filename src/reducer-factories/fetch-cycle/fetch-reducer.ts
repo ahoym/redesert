@@ -13,10 +13,7 @@ import {
 const { START, FAILURE, SUCCESS } = API_LIFECYCLE_SUFFIXES;
 
 function fetchReducerFactory({ entitiesPath }: ReducerConfig): Function {
-  const fetchLifeCycleCases = (
-    state: ReduxSliceState,
-    action: Action
-  ): ReduxSliceState => {
+  return (state: ReduxSliceState, action: Action): ReduxSliceState => {
     const { errors, meta, payload, type } = action;
 
     if (!isValidActionType(API_ACTION_PREFIXES.FETCH, type)) return state;
@@ -27,8 +24,7 @@ function fetchReducerFactory({ entitiesPath }: ReducerConfig): Function {
     let attributePath: string[]; // Determine where to set pending state
 
     if (!referenceId) {
-      // Assume batch fetch
-      attributePath = [];
+      attributePath = []; // Assume batch fetch
     } else {
       attributePath = [entitiesPath, referenceId];
     }
@@ -59,8 +55,6 @@ function fetchReducerFactory({ entitiesPath }: ReducerConfig): Function {
 
     return state;
   };
-
-  return fetchLifeCycleCases;
 }
 
 export default fetchReducerFactory;
