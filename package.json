@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",
+    "@types/reselect": "^2.2.0",
     "babel-eslint": "^7.2.3",
     "eslint": "^4.1.1",
     "eslint-config-react-app": "^2.1.0",
@@ -45,6 +46,7 @@
     "jest": "^22.4.3",
     "precise-commits": "^1.0.2",
     "prettier": "^1.12.1",
+    "reselect": "^3.0.1",
     "ts-jest": "^22.4.5",
     "typescript": "^2.8.3",
     "typescript-eslint-parser": "^15.0.0"
