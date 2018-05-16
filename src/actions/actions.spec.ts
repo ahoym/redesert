@@ -1,5 +1,6 @@
 import API_LIFECYCLE_SUFFIXES from './api-lifecycle-suffixes';
 import isValidActionType from './is-valid-action-type';
+import { resourceApiActionTypesFactory } from './api-action-prefixes';
 
 describe('isValidActionType()', () => {
   const reducerNameSpace = 'FETCH_';
@@ -19,5 +20,11 @@ describe('isValidActionType()', () => {
       const actionType = `${reducerNameSpace}_foo_${suffix}`;
       expect(isValidActionType(reducerNameSpace, actionType)).toEqual(true);
     });
+  });
+});
+
+describe('resourceApiActionTypesFactory()', () => {
+  it('creates baseApiActionTypes for a passed in resource', () => {
+    expect(resourceApiActionTypesFactory('foo')).toMatchSnapshot();
   });
 });

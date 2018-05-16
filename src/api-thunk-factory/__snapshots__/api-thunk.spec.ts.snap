@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`apiThunk() failed networkRequest responses dispatches the *__START and *__ERROR actions 1`] = `
+Array [
+  Array [
+    Object {
+      "meta": undefined,
+      "type": "FETCH__foo__START",
+    },
+  ],
+  Array [
+    Object {
+      "errors": Object {
+        "status": 500,
+        "statusText": "Internal server error",
+      },
+      "meta": undefined,
+      "type": "FETCH__foo__FAILURE",
+    },
+  ],
+]
+`;
+
+exports[`apiThunk() failed networkRequest responses dispatches the actions with meta attributes 1`] = `
+Array [
+  Array [
+    Object {
+      "meta": Object {
+        "referenceId": "123",
+      },
+      "type": "FETCH__foo__START",
+    },
+  ],
+  Array [
+    Object {
+      "errors": Object {
+        "status": 500,
+        "statusText": "Internal server error",
+      },
+      "meta": Object {
+        "referenceId": "123",
+      },
+      "type": "FETCH__foo__FAILURE",
+    },
+  ],
+]
+`;
+
+exports[`apiThunk() successful networkRequest responses dispatches the *__START and *__SUCCESS actions 1`] = `
+Array [
+  Array [
+    Object {
+      "meta": undefined,
+      "type": "FETCH__foo__START",
+    },
+  ],
+  Array [
+    Object {
+      "meta": undefined,
+      "payload": Object {
+        "id": "123",
+        "name": "foo",
+      },
+      "type": "FETCH__foo__SUCCESS",
+    },
+  ],
+]
+`;
+
+exports[`apiThunk() successful networkRequest responses dispatches the actions with meta attributes 1`] = `
+Array [
+  Array [
+    Object {
+      "meta": Object {
+        "referenceId": "123",
+      },
+      "type": "FETCH__foo__START",
+    },
+  ],
+  Array [
+    Object {
+      "meta": Object {
+        "referenceId": "123",
+      },
+      "payload": Object {
+        "id": "123",
+        "name": "foo",
+      },
+      "type": "FETCH__foo__SUCCESS",
+    },
+  ],
+]
+`;

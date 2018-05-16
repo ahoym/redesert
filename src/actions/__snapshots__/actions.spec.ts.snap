@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`resourceApiActionTypesFactory() creates baseApiActionTypes for a passed in resource 1`] = `
+Object {
+  "CREATE": "CREATE__foo",
+  "FETCH": "FETCH__foo",
+  "REMOVE": "REMOVE__foo",
+  "UPDATE": "UPDATE__foo",
+}
+`;

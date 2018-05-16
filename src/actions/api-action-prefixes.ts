@@ -12,4 +12,13 @@ const API_ACTION_PREFIXES: ApiActionPrefixes = {
   REMOVE: 'REMOVE_',
 };
 
+export function resourceApiActionTypesFactory(resource: string) {
+  return {
+    FETCH: `${API_ACTION_PREFIXES.FETCH}_${resource}`,
+    CREATE: `${API_ACTION_PREFIXES.CREATE}_${resource}`,
+    UPDATE: `${API_ACTION_PREFIXES.UPDATE}_${resource}`,
+    REMOVE: `${API_ACTION_PREFIXES.REMOVE}_${resource}`,
+  };
+}
+
 export default API_ACTION_PREFIXES;
