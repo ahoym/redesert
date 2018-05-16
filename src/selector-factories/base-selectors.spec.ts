@@ -29,6 +29,11 @@ describe('selectorsFactory()', () => {
   };
   const fooSelectors = selectorsFactory({ entitiesPath, resource });
 
+  const makePendingAction = (type: string) => ({
+    type,
+    meta: { referenceId: id },
+  });
+
   it('dynamically creates a base set of selectors', () => {
     [
       `getFooEntities`,
@@ -104,37 +109,24 @@ describe('selectorsFactory()', () => {
   });
 
   it('determines if a single entity is being fetched with getIs*Fetching', () => {
-    const fetchAction = {
-      type: `${FETCH}_${resource}_${START}`,
-      meta: {
-        referenceId: id,
-      },
-    };
+    const fetchAction = makePendingAction(`${FETCH}_${resource}_${START}`);
     const state = callFooReducer(fetchAction);
 
     expect(fooSelectors.getIsFooFetching(state, { id })).toEqual(true);
   });
 
   it('determines if a single entity is being updated with getIs*Updating', () => {
-    const updateAction = {
-      type: `${UPDATE}_${resource}_${START}`,
-      meta: {
-        referenceId: id,
-      },
-    };
+    const updateAction = makePendingAction(`${UPDATE}_${resource}_${START}`);
     const state = callFooReducer(updateAction);
 
     expect(fooSelectors.getIsFooUpdating(state, { id })).toEqual(true);
   });
 
   it('determines if a single entity is being removed with getIs*Removing', () => {
-    const updateAction = {
-      type: `${REMOVE}_${resource}_${START}`,
-      meta: {
-        referenceId: id,
-      },
-    };
-    const state = callFooReducer(updateAction);
+    const removeupdateAction = makePendingAction(
+      `${REMOVE}_${resource}_${START}`
+    );
+    const state = callFooReducer(removeupdateAction);
 
     expect(fooSelectors.getIsFooRemoving(state, { id })).toEqual(true);
   });
