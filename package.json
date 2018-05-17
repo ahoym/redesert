@@ -1,6 +1,6 @@
 {
   "name": "redesert",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description":
     "Higher order functions for creating opinionated redux reducers, selectors, actions, and action creators",
   "main": "lib/index.js",
