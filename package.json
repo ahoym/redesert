@@ -13,10 +13,12 @@
     "build:cjs":
       "npm run compile:ts && NODE_ENV=cjs rollup -c -o lib/redesert.js",
     "build:es": "npm run compile:ts && NODE_ENV=es rollup -c -o es/redesert.js",
+    "clean": "rimraf lib es compiled coverage",
     "compile:ts": "tsc",
     "test": "jest --watch",
     "test:ci": "jest --coverage",
-    "precommit": "precise-commits"
+    "precommit": "precise-commits",
+    "prepare": "npm run clean && jest && npm run build"
   },
   "dependencies": {
     "@types/lodash.camelcase": "^4.3.3",
@@ -52,6 +54,7 @@
     "precise-commits": "^1.0.2",
     "prettier": "^1.12.1",
     "reselect": "^3.0.1",
+    "rimraf": "^2.6.2",
     "rollup": "^0.59.1",
     "rollup-plugin-uglify": "^3.0.0",
     "ts-jest": "^22.4.5",
