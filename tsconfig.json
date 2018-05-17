@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "declarationDir": "./types",
     "esModuleInterop": true,
     "lib": ["es2015", "es2016.array.include"],
     "module": "commonjs",
-    "outDir": "./dist/",
+    "outDir": "./compiled/",
     "strict": true,
     "strictNullChecks": true,
-    "target": "es5",
+    "target": "es6",
     "noUnusedLocals": true
   },
   "include": ["./src/"],
-  "exclude": ["./src/test-utils/", "node_modules"],
+  "exclude": ["**/test-utils", "node_modules", "**/*.spec.ts"],
   "compileOnSave": true
 }
