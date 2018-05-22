@@ -6,9 +6,32 @@
 
 Redux, but the boiler plate done for you. `redesert` is a set of higher order functions that automatically generate reducers, selectors, actions, and action creators.
 
+#### Table of Contents
+
+* [Installation][installation]
+* [Basic Example][basicexample]
+* [In action, inside example projects][exampleusages]
+* [How does it work?][howitworks]
+
+## Installation
+
+[installation]: #installation
+
+```
+npm install --save redesert
+```
+
+or
+
+```
+yarn add redesert
+```
+
 ## Basic Example
 
-```js
+[basicexample]: #basic-example
+
+```javascript
 import {
   apiThunk,
   makeResourceReducer,
@@ -16,7 +39,9 @@ import {
   resourceApiActionTypesFactory,
 } from 'redesert';
 
+// Resources are usually a model from your backend
 const resource = 'foo';
+// Create
 const fooApiActionTypes = resourceApiActionTypesFactory(resource);
 
 const fetchFoos = () => dispatch =>
@@ -41,4 +66,47 @@ const {
 
 // Handles all basic CRUD action types, dispatched from apiThunk
 const fooReducer = makeResourceReducer({ resource });
+/*
+Ouputs a state that looks like:
+
+[resource]: {
+  [entitiesPath]: {
+    [entity.id]: entity
+  },
+  errors?: any
+  isFetching: boolean // Only for the status of GET'ing a collection
+}
+*/
 ```
+
+## In action, inside example projects:
+
+[exampleusages]: #in-action-inside-example-projects
+
+* Add link to pokemans
+
+## How does it work?
+
+[howitworks]: #how-does-it-work
+
+* `resourceApiActionTypesFactory` creates action types that generated reducers
+  automatically have cases for, and `apiThunk` automatically dispatches
+  * See more fleshed out `README.md` for more detail
+* `apiThunk` follows the basic network request logic flow of:
+  * `*__START` a network request. Signifies the request is in flight
+  * `*__SUCCESS` response from the endpoint
+  * `*__FAILURE` response from the endpoint
+  * See more fleshed out `README.md` for more detail
+* `makeResourceReducer`/`resourceReducerFactory` creates a reducer that has
+  cases for the above three request life cycle suffixes
+  * The resource reducer will only parse action types of the passed in
+    `resource`, or any action types defined in `externalActionTypes`
+  * Each REST action has its own cases for the suffixes. This yields generic
+    action types that look like: `<API_ACTION>__resource__<SUFFIX>`
+  - The reducer outputs an expected state data structure
+  - See more fleshed out `README.md` for more detail
+
+- `makeResourceSelectors` creates selectors that traverse the expected state and
+  returns commonly accessed data. These selectors can also be used (through
+  `reselect`) to compose more specific selectors for your application
+  * See more fleshed out `README.md` for more detail
