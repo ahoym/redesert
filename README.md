@@ -91,22 +91,17 @@ Ouputs a state that looks like:
 
 * `resourceApiActionTypesFactory` creates action types that generated reducers
   automatically have cases for, and `apiThunk` automatically dispatches
-  * See more fleshed out `README.md` for more detail
 * `apiThunk` follows the basic network request logic flow of:
   * `*__START` a network request. Signifies the request is in flight
   * `*__SUCCESS` response from the endpoint
   * `*__FAILURE` response from the endpoint
-  * See more fleshed out `README.md` for more detail
 * `makeResourceReducer`/`resourceReducerFactory` creates a reducer that has
   cases for the above three request life cycle suffixes
   * The resource reducer will only parse action types of the passed in
     `resource`, or any action types defined in `externalActionTypes`
   * Each REST action has its own cases for the suffixes. This yields generic
     action types that look like: `<API_ACTION>__resource__<SUFFIX>`
-  - The reducer outputs an expected state data structure
-  - See more fleshed out `README.md` for more detail
-
-- `makeResourceSelectors` creates selectors that traverse the expected state and
+  * The reducer outputs an expected state data structure
+* `makeResourceSelectors` creates selectors that traverse the expected state and
   returns commonly accessed data. These selectors can also be used (through
   `reselect`) to compose more specific selectors for your application
-  * See more fleshed out `README.md` for more detail
