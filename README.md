@@ -93,8 +93,8 @@ Ouputs a state that looks like:
   automatically have cases for, and `apiThunk` automatically dispatches
 * `apiThunk` follows the basic network request logic flow of:
   * `*__START` a network request. Signifies the request is in flight
-  * `*__SUCCESS` response from the endpoint
-  * `*__FAILURE` response from the endpoint
+  * `*__SUCCESS` response from the endpoint (success)
+  * `*__FAILURE` response from the endpoint (error)
 * `makeResourceReducer`/`resourceReducerFactory` creates a reducer that has
   cases for the above three request life cycle suffixes
   * The resource reducer will only parse action types of the passed in
