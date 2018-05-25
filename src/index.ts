@@ -6,6 +6,9 @@ import { resourceApiActionTypesFactory } from './actions';
 import { DefaultReducerFactories } from './reducer-factories/type-definitions';
 
 const entitiesPath = 'byId';
+const initialState = {
+  [entitiesPath]: {},
+};
 
 type MakeResourceReducerConfig = {
   entitiesPath: string;
@@ -18,6 +21,7 @@ const makeResourceReducer = (config: MakeResourceReducerConfig): Function =>
   resourceReducerFactory({
     defaultReducerFactories,
     entitiesPath,
+    initialState,
     ...config,
   });
 
