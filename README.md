@@ -41,7 +41,6 @@ import {
 
 // Resources are usually a model from your backend
 const resource = 'foo';
-// Create
 const fooApiActionTypes = resourceApiActionTypesFactory(resource);
 
 const fetchFoos = () => dispatch =>
