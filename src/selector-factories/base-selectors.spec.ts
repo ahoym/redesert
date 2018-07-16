@@ -101,6 +101,14 @@ describe('selectorsFactory()', () => {
     expect(fooSelectors.getFooErrorsById(state, { id })).toEqual(errors);
   });
 
+  it("doesn't error if the single entity doesn't exist in get*ErrorsById", () => {
+    const state = callFooReducer({ type: '@@INIT' });
+
+    expect(fooSelectors.getFooErrorsById(state, { id: '890' })).toEqual(
+      undefined
+    );
+  });
+
   it('determines if the collection is fetching with getAre*EntitiesFetching', () => {
     const collectionFetchAction = {
       type: `${FETCH}_${resource}_${START}`,
@@ -116,7 +124,7 @@ describe('selectorsFactory()', () => {
     expect(fooSelectors.getIsFooFetching(state, { id })).toEqual(true);
   });
 
-  it("returns undefined if the single entity doesn't exist when getIs*ing", () => {
+  it("doesn't error if the single entity doesn't exist in getIs*ing", () => {
     const state = callFooReducer({ type: '@@INIT' });
     expect(fooSelectors.getIsFooFetching(state, { id: '890' })).toEqual(
       undefined

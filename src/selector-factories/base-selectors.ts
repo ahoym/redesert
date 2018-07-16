@@ -41,13 +41,13 @@ function selectorsFactory({
 
   const getSliceErrors = (state: ReduxSliceState) => state[resource].errors;
 
-  const getEntityErrorsById = createSelector(
-    getEntityById,
-    entity => entity.errors
-  );
-
   const areEntitiesFetching = (state: ReduxSliceState) =>
     !!state[resource].isFetching;
+
+  const getEntityErrorsById = createSelector(
+    getEntityById,
+    entity => entity && entity.errors
+  );
 
   const isEntityFetching = createSelector(
     getEntityById,
