@@ -29,6 +29,7 @@ describe('selectorsFactory()', () => {
   };
   const fooSelectors = selectorsFactory({ entitiesPath, resource });
 
+  const makeBlankInitialState = () => callFooReducer({ type: '@@INIT' });
   const makePendingStateFromAction = (type: string) => {
     const pendingAction = {
       type,
@@ -54,7 +55,7 @@ describe('selectorsFactory()', () => {
   });
 
   it('gets all entities with get*Entities()', () => {
-    const state = callFooReducer({ type: '@@INIT' });
+    const state = makeBlankInitialState();
 
     expect(fooSelectors.getFooEntities(state)).toEqual(
       initialState[entitiesPath]
@@ -62,14 +63,16 @@ describe('selectorsFactory()', () => {
   });
 
   it('gets a specific entity with get*EntityById', () => {
-    const state = callFooReducer({ type: '@@INIT' });
+    const state = makeBlankInitialState();
+
     expect(fooSelectors.getFooById(state, { id })).toEqual(
       initialState[entitiesPath][id]
     );
   });
 
   it('gets the first entity with getCurrent*', () => {
-    const state = callFooReducer({ type: '@@INIT' });
+    const state = makeBlankInitialState();
+
     expect(fooSelectors.getCurrentFoo(state)).toEqual(
       initialState[entitiesPath]['123']
     );
@@ -101,6 +104,14 @@ describe('selectorsFactory()', () => {
     expect(fooSelectors.getFooErrorsById(state, { id })).toEqual(errors);
   });
 
+  it("doesn't error if the single entity doesn't exist in get*ErrorsById", () => {
+    const state = makeBlankInitialState();
+
+    expect(fooSelectors.getFooErrorsById(state, { id: '890' })).toEqual(
+      undefined
+    );
+  });
+
   it('determines if the collection is fetching with getAre*EntitiesFetching', () => {
     const collectionFetchAction = {
       type: `${FETCH}_${resource}_${START}`,
@@ -116,8 +127,9 @@ describe('selectorsFactory()', () => {
     expect(fooSelectors.getIsFooFetching(state, { id })).toEqual(true);
   });
 
-  it("returns undefined if the single entity doesn't exist when getIs*ing", () => {
-    const state = callFooReducer({ type: '@@INIT' });
+  it("doesn't error if the single entity doesn't exist in getIs*ing", () => {
+    const state = makeBlankInitialState();
+
     expect(fooSelectors.getIsFooFetching(state, { id: '890' })).toEqual(
       undefined
     );
