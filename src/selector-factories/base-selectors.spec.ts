@@ -116,6 +116,13 @@ describe('selectorsFactory()', () => {
     expect(fooSelectors.getIsFooFetching(state, { id })).toEqual(true);
   });
 
+  it("returns undefined if the single entity doesn't exist when getIs*ing", () => {
+    const state = callFooReducer({ type: '@@INIT' });
+    expect(fooSelectors.getIsFooFetching(state, { id: '890' })).toEqual(
+      undefined
+    );
+  });
+
   it('determines if a single entity is being updated with getIs*Updating', () => {
     const state = makePendingStateFromAction(`${UPDATE}_${resource}_${START}`);
     expect(fooSelectors.getIsFooUpdating(state, { id })).toEqual(true);

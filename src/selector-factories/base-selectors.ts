@@ -51,17 +51,17 @@ function selectorsFactory({
 
   const isEntityFetching = createSelector(
     getEntityById,
-    entity => !!entity.isFetching
+    entity => entity && !!entity.isFetching
   );
 
   const isEntityUpdating = createSelector(
     getEntityById,
-    entity => !!entity.isUpdating
+    entity => entity && !!entity.isUpdating
   );
 
   const isEntityRemoving = createSelector(
     getEntityById,
-    entity => !!entity.isRemoving
+    entity => entity && !!entity.isRemoving
   );
 
   return {
