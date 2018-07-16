@@ -29,6 +29,7 @@ describe('selectorsFactory()', () => {
   };
   const fooSelectors = selectorsFactory({ entitiesPath, resource });
 
+  const makeBlankInitialState = () => callFooReducer({ type: '@@INIT' });
   const makePendingStateFromAction = (type: string) => {
     const pendingAction = {
       type,
@@ -54,7 +55,7 @@ describe('selectorsFactory()', () => {
   });
 
   it('gets all entities with get*Entities()', () => {
-    const state = callFooReducer({ type: '@@INIT' });
+    const state = makeBlankInitialState();
 
     expect(fooSelectors.getFooEntities(state)).toEqual(
       initialState[entitiesPath]
@@ -62,14 +63,16 @@ describe('selectorsFactory()', () => {
   });
 
   it('gets a specific entity with get*EntityById', () => {
-    const state = callFooReducer({ type: '@@INIT' });
+    const state = makeBlankInitialState();
+
     expect(fooSelectors.getFooById(state, { id })).toEqual(
       initialState[entitiesPath][id]
     );
   });
 
   it('gets the first entity with getCurrent*', () => {
-    const state = callFooReducer({ type: '@@INIT' });
+    const state = makeBlankInitialState();
+
     expect(fooSelectors.getCurrentFoo(state)).toEqual(
       initialState[entitiesPath]['123']
     );
@@ -102,7 +105,7 @@ describe('selectorsFactory()', () => {
   });
 
   it("doesn't error if the single entity doesn't exist in get*ErrorsById", () => {
-    const state = callFooReducer({ type: '@@INIT' });
+    const state = makeBlankInitialState();
 
     expect(fooSelectors.getFooErrorsById(state, { id: '890' })).toEqual(
       undefined
@@ -125,7 +128,8 @@ describe('selectorsFactory()', () => {
   });
 
   it("doesn't error if the single entity doesn't exist in getIs*ing", () => {
-    const state = callFooReducer({ type: '@@INIT' });
+    const state = makeBlankInitialState();
+
     expect(fooSelectors.getIsFooFetching(state, { id: '890' })).toEqual(
       undefined
     );
