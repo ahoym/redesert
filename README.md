@@ -9,9 +9,9 @@ The APIs **will** change to be more consistent in v1.0.0. By then we also hope t
 
 Redux, but the boiler plate DRY'ed up. Just define your `resource`. `redesert` is a set of higher order functions that automatically generate reducers, selectors, actions, and action creators mainly geared for handling REST API request cycles.
 
-**TL;DR** The state slices output from the reducer is strictly opinionated but general. However, because of that we can auto-generate other portions of the data life cycle.
+**TL;DR** The state slices output from the reducers are strictly opinionated but general. However, because of that we can auto-generate other portions of the data life cycle.
 
-The state slice generally looks like this:
+A state slice generally looks like this:
 
 ```js
 /*
