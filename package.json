@@ -66,6 +66,7 @@
       "\\.(ts|tsx)$": "ts-jest"
     },
     "testRegex": "/src/.*\\.spec.(ts)$",
+    "testURL": "http://localhost/",
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/src/reducer-factories/test-utils/"
