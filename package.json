@@ -9,9 +9,6 @@
   "license": "MIT",
   "scripts": {
     "build": "npm run build:cjs && npm run build:es",
-    "build:cjs":
-      "npm run compile:ts && NODE_ENV=cjs rollup -c -o lib/redesert.js",
-    "build:es": "npm run compile:ts && NODE_ENV=es rollup -c -o es/redesert.js",
     "clean": "rimraf lib es compiled coverage",
     "compile:ts": "tsc",
     "test": "jest --watch",
@@ -54,8 +51,6 @@
     "prettier": "^1.12.1",
     "reselect": "^3.0.1",
     "rimraf": "^2.6.2",
-    "rollup": "^0.59.1",
-    "rollup-plugin-uglify": "^3.0.0",
     "ts-jest": "^22.4.5",
     "typescript": "^2.8.3",
     "typescript-eslint-parser": "^15.0.0"
